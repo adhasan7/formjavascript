@@ -1,10 +1,99 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <title>Praktikum 4</title>
 </head>
 <body>
-    <script src="isi_js.js"></script>
+    <script>
+      
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+function Hasil() {
+var nama = document.querySelector("input[name=i_nama]").value;
+var asal = document.querySelector("input[name=i_asal]").value;
+var tujuan = document.querySelector("select[name=i_tujuan]").value;
+
+    var jalurtravel = asal + "." + tujuan;
+    //var jenistravel = (document.ffrom.i_jenistravel.value);
+    var travelbybus = document.querySelector("input[name=i_bus]").checked;
+    var travelbykereta = document.querySelector("input[name=i_kereta]").checked;
+    var travelbypesawat = document.querySelector("input[name=i_pesawat]").checked;
+    var jumlahtiket = parseFloat(document.querySelector("input[name=i_jumlahTiket]").value);
+  
+    var member = document.querySelector("input[name=i_member]").checked;
+
+    var hargatiket = 0.0;
+    var subtotal = 0.0;
+    var diskon = 0.0;
+    var total = 0.0;
+
+    //harga tiket berdasarkan jenis travel
+    if (travelbybus == true){
+    var jenistiket = "Bus";
+    //harga tiket menggunakan bus
+  }if (tujuan == "Palopo")
+  {
+    hargatiket = 100000; 
+  }else if (tujuan == "Makasar")
+  {
+      hargatiket = 150000;
+  }else {
+    hargatiket = 200000;
+  }
+  
+  if (travelbykereta == true){
+    var jenistiket = "Kereta";
+  }
+  //harga tiket menggunakan kereta
+  if (tujuan == "palopo")
+  {
+      hargatiket = 300000;
+  }
+  else if (tujuan == "Makasar")
+  {
+      hargaTiket = 350000;
+  }
+  else{
+    hargatiket = 500000;
+  }
+  
+  if (travelbypesawat == true){
+    var jenistiket = "Pesawat";
+  }
+  // harga tiket menggunakan pesawat
+   if(tujuan == "Palopo"){
+    hargatiket = 600000;
+   }
+   else if (tujuan == "Makasar"){
+    hargatiket = 650000;
+   }
+   else{
+    hargatiket = 700000;
+   }
+   
+ subtotal = jumlahtiket*hargatiket;
+   //diskon untuk member
+   if(member == true){
+    diskon = 0.10 * subtotal;
+   }
+   else{
+    diskon = 0.0;
+   }
+   
+//total harga
+  total = subtotal-diskon;
+
+  document.querySelector("input[name=o_tiket]").value = formatNumber(eval(hargatiket));
+  document.querySelector("input[name=o_travelby]").value = jenistiket;
+  document.querySelector("input[name=o_subtotal]").value = formatNumber(eval(subtotal));
+  document.querySelector("input[name=o_diskon]").value = formatNumber(eval(diskon));
+  document.querySelector("input[name=o_total]").value = formatNumber(eval(total));
+  
+  }
+   
+    </script>
     <form name ="form">
     <table border="1" align="center"width="70%">
     <tr>
@@ -36,8 +125,8 @@
     </tr>
     <tr>
         <td width="100%" colspan="2"><center>
-            <input type="button" value="Hitung" onclick="hitungtotal()"/>
-            <input type="reset" onc />
+            <input type="button" value="Hitung" onclick="Hasil()">
+            <input type="reset">
         </center>
         </td>
     </tr>      
